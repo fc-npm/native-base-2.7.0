@@ -59,49 +59,8 @@ class Header extends Component {
     return topPadder;
   }
   render() {
-    const variables = this.context.theme
-      ? this.context.theme["@@shoutem.theme/themeStyle"].variables
-      : variable;
-    const platformStyle = variables.platformStyle;
     return (
-      <View onLayout={e => this.layoutChange(e.nativeEvent.layout)}>
-        <StatusBar
-          backgroundColor={
-            this.props.androidStatusBarColor
-              ? this.props.androidStatusBarColor
-              : variables.statusBarColor
-          }
-          barStyle={
-            this.props.iosBarStyle
-              ? this.props.iosBarStyle
-              : platformStyle === "material"
-                ? "light-content"
-                : variables.iosStatusbar
-          }
-          translucent={this.props.transparent ? true : this.props.translucent}
-        />
-        {variable.isIphoneX ? (
-          <View
-            ref={c => (this._root = c)}
-            {...this.props}
-            style={[
-              this.props.style,
-              {
-                height: this.calculateHeight(
-                  this.state.orientation,
-                  variables.Inset
-                ),
-                paddingTop: this.calculatePadder(
-                  this.state.orientation,
-                  variables.Inset
-                )
-              }
-            ]}
-          />
-        ) : (
-            <View ref={c => (this._root = c)} {...this.props} />
-          )}
-      </View>
+      <View ref={c => (this._root = c)} {...this.props} />
     );
   }
 }
